@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+ascii_art_dir="/home/znurt/znurtfetch-ascii-logos"
+case "$(lsb_release -ds)" in
+    "Arch Linux")
+        ascii_art=$(cat "$ascii_art_dir/archlinux.txt")
+        ;;
+    "Debian")
+        ascii_art=$(cat "$ascii_art_dir/debian.txt")
+        ;;
+    "Fedora")
+        ascii_art=$(cat "$ascii_art_dir/fedora.txt")
+        ;;
+    "Gentoo Linux")
+        ascii_art=$(cat "$ascii_art_dir/gentoo.txt")
+        ;;
+    "openSUSE")
+        ascii_art=$(cat "$(cat /etc/os-release | grep "NAME=" | sed 's/"//g' | sed 's/NAME=//g')".txt)
+        ;;
+    "Manjaro")
+        ascii_art=$(cat "$ascii_art_dir/manjaro.txt")
+        ;;
+    "Raw Linux")
+        ascii_art=$(cat "$ascii_art_dir/linux.txt")
+        ;;
+    "EndeavourOS")
+        ascii_art=$(cat "$ascii_art_dir/endeavouros.txt")
+        ;;
+    "Linux Mint")
+        ascii_art=$(cat "$ascii_art_dir/mint.txt")
+esac
+
+echo "$ascii_art"
+USERNAME=$(whoami)
+HOSTNAME=$(hostname)
+KERNEL=$(uname -r)
+OPERATING_SYSTEM=$(lsb_release -ds)
+OPERATING_SYSTEM_VERSION=$(lsb_release -sr)
+ARCHITECTURE=$(uname -m)
+PROCESSOR=$(lscpu | grep "Model name" | cut -d ":" -f2 | xargs)
+UPTIME=$(uptime -p | sed 's/up //')
+SHELL=$(basename $SHELL)
+TERMINAL=$(echo $TERM)
+DE=$(echo $XDG_CURRENT_DESKTOP)
+echo "Username: $USERNAME"
+echo "Hostname: $HOSTNAME"
+echo "Kernel: $KERNEL"
+echo "Operating System: $OPERATING_SYSTEM"
+echo "Operating System Version: $OPERATING_SYSTEM_VERSION"
+echo "Architecture: $ARCHITECTURE"
+echo "Processor: $PROCESSOR"
+echo "Uptime: $UPTIME"
+echo "Shell: $SHELL"
+echo "Terminal: $TERMINAL"
+echo "Desktop Enviornment: $DE"
