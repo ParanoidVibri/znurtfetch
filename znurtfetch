@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ascii_art_dir="/home/znurt/znurtfetch-ascii-logos"
+ascii_art_dir="/home/$USER/znurtfetch-ascii-logos"
 case "$(lsb_release -ds)" in
     "Arch Linux")
         ascii_art=$(cat "$ascii_art_dir/archlinux.txt")
